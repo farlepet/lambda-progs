@@ -38,8 +38,17 @@ struct kvid_kerror_m //!< S structure holding an entire kvid kerror message
 	struct kvid_kerror_msg kkm;
 };
 
+
+/**
+ * Initialize KVID system. Retrieves KVID's PID and stores it.
+ */
 void sys_kvid_init();
 
+/**
+ * Send a message via KVID
+ *
+ * @param str String to display
+ */
 void sys_kvid_print(char *str);
 
 #endif

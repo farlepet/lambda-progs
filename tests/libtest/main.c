@@ -1,6 +1,5 @@
 #include <lambda/sys/ktasks/kvid.h>
 #include <lambda/sys/syscalls.h>
-#include <rawio/rawvga.h>
 
 int main() {
 	sys_kvid_init();
