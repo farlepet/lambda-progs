@@ -1,18 +1,20 @@
 MAINDIR    = $(CURDIR)
+LIB        = $(MAINDIR)/../../lib
+LIBINC     = $(LIB)/inc
 
 SRCS       = $(wildcard *.c)
 
 OBJS       = $(patsubst %.c,%.o,$(SRCS))
 
-CFLAGS    += -m32 -nostdlib -nostdinc -ffreestanding -Wall -Wextra -Werror
-LDFLAGS    = -melf_i386 -T ../../linker_test.ld
+CFLAGS    += -m32 -nostdlib -nostdinc -ffreestanding -Wall -Wextra -Werror -fno-stack-protector -I$(LIBINC)
+LDFLAGS    = -melf_i386 -T $(LIB)/linker.ld
 
 OUT        = ctest
 
 link:   $(OBJS)
 	@echo -e "\033[33m  \033[1mLinking sources\033[0m"
-	@ld $(LDFLAGS) -o $(OUT) ../../crt/crt0.o $(OBJS)
-	@objcopy -O binary ctest ctest.bin
+	@ld $(LDFLAGS) -o $(OUT) $(LIB)/crt/crt0.o $(OBJS) $(LIB)/liblambda.a
+#@objcopy -O binary $(OUT) $(OUT).bin
 
 all: link
 
@@ -24,4 +26,4 @@ all: link
 
 
 clean:
-	@rm -f $(OBJS) $(OUT)
+	@rm -f $(OBJS) $(OUT) $(OUT).bin
