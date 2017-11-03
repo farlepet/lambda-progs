@@ -13,7 +13,7 @@ OUT        = libtest
 
 link:   $(OBJS)
 	@echo -e "\033[33m  \033[1mLinking sources\033[0m"
-	@ld $(LDFLAGS) -o $(OUT) ../../crt/crt0.o $(OBJS) $(LIB)/liblambda.a
+	@ld $(LDFLAGS) -o $(OUT) ../../lib/crt/crt0.o $(OBJS) $(LIB)/liblambda.a
 	@objcopy -O binary libtest libtest.bin
 
 all: link
