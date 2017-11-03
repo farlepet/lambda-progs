@@ -6,7 +6,7 @@ SRCS       = $(wildcard *.c)
 
 OBJS       = $(patsubst %.c,%.o,$(SRCS))
 
-CFLAGS    += -m32 -nostdlib -nostdinc -ffreestanding -Wall -Wextra -Werror -I$(LIBINC)
+CFLAGS    += -m32 -nostdlib -nostdinc -ffreestanding -Wall -Wextra -Werror -fno-stack-protector -I$(LIBINC)
 LDFLAGS    = -melf_i386 -T ../../linker_test.ld
 
 OUT        = libtest

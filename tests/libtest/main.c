@@ -2,21 +2,25 @@
 #include <lambda/sys/syscalls.h>
 
 #include <unistd.h>
+#include <stdio.h>
 
 int main() {
-	sys_kvid_init();
+	printf("\nSTDOUT printf test!\n");
 
-	sys_kvid_print("\nKVID test\n");
+	printf("Reading 8 characters from STDIN:\n");
 
-	sys_kvid_print("Attempting to print a pointer to a non-existant page:\n");
+	char c;
 
-	sys_kvid_print((void *)0xFFFFFFFF);
-
-	write(1, "Test string using STDOUT!\n", 27);
-
-	write(2, "Test string using STDERR!\n", 27);
-
-	for(;;);
+	int i = 0;
+	while(i < 8) {
+		if(read(0, &c, 1) > 0) {
+			printf("Received character: %c\n", c);
+			/*write(1, "Recv ch: ", 9);
+			write(1, &c, 1);
+			write(1, "\n", 1);*/
+			i++;
+		}
+	}
 
 	return 0;
 }
