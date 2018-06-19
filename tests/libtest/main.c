@@ -9,11 +9,12 @@ int main() {
 
 	printf("Reading 8 characters from STDIN:\n");
 
-	char c;
-
 	int i = 0;
 	while(i < 8) {
-		if(read(0, &c, 1) > 0) {
+        int c;
+        if((c = getchar()) != EOF) {
+
+		//if(read(0, &c, 1) > 0) {
 			printf("Received character: %c\n", c);
 			/*write(1, "Recv ch: ", 9);
 			write(1, &c, 1);
